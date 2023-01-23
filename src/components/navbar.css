@@ -4,6 +4,44 @@
     background-color: darkslategray;
     color: white;
     text-align: center;
+    
+  }
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+  }
+  
+  li {
+    float: right;
+  }
+  
+  li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 24px 16px;
+    text-decoration: none;
+    font-size: larger;
+  }
+  a:active {
+    background-color: red;
+  }
+
+  .left{
+    float: left;
+  }
+  .left > p{
+    margin: 0;
+
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 24px 16px;
+    text-decoration: none;
+    font-size: larger;
   }
   
   .heading > h1 {

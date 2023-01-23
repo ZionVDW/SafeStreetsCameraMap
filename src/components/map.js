@@ -3,14 +3,34 @@ import axios from "axios";
 import maplibregl from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
 import "./map.css";
+import { useLocation } from "react-router-dom";
+import { animated, useSpring } from "@react-spring/web";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+const defaultLng = 4.99084;
+const defaultLat = 51.16257;
+const defaultZoom = 13;
 
 export default function Map() {
+  const location = useLocation();
+  const { initLng, initLat, initZoom } = location.state || {};
+  console.log(initLng);
   const mapContainer = useRef(null);
   const map = useRef(null);
-  const [lng] = useState(4.99084);
-  const [lat] = useState(51.16257);
-  const [zoom] = useState(13);
+  const [lng] = useState(initLng === undefined ? defaultLng : initLng);
+  const [lat] = useState(initLat === undefined ? defaultLat : initLat);
+  const [zoom] = useState(initZoom === undefined ? defaultZoom : initZoom);
   const [API_KEY] = useState("377LREZ4PGCvgJ3xsq7X");
+  const [springs, api] = useSpring(() => ({
+    from: { bottom: -400 },
+  }));
+
+  function resetDefault() {
+    map.current.flyTo({
+      center: [defaultLng, defaultLat],
+      zoom: defaultZoom,
+    });
+  }
 
   useEffect(() => {
     const getmarkers = async () => {
@@ -30,6 +50,7 @@ export default function Map() {
         center: [lng, lat],
         zoom: zoom,
       });
+      map.current.addControl(new maplibregl.NavigationControl());
 
       cameras.forEach((camera) => {
         const popup = new maplibregl.Popup({ offset: 25 }).setHTML(
@@ -54,34 +75,14 @@ export default function Map() {
     getmarkers();
   });
 
-  useEffect(() => {});
-
-  // map.current.addControl(new maplibregl.NavigationControl(), "top-right");
-
-  // markers.forEach((marker) => {
-  //   console.log(marker);
-  //   console.log(marker.name);
-  //   const popup = new maplibregl.Popup({ offset: 25 }).setHTML(
-  //     "<h1>" +
-  //       marker.name +
-  //       "</h1> \n <h3>Straat: " +
-  //       marker.location.street +
-  //       marker.location.streetNumber +
-  //       "</h3> \n <h3>Gemeente: 2020 GEEL</h3>"
-  //   );
-
-  //   new maplibregl.Marker({ color: "#DE00FF" })
-  //     .setLngLat([
-  //       parseFloat(marker.location.longitude),
-  //       parseFloat(marker.location.longitude),
-  //     ])
-  //     .setPopup(popup)
-  //     .addTo(map.current);
-  // });
-
   return (
-    <div className="map-wrap">
-      <div ref={mapContainer} className="map" />
-    </div>
+    <>
+      <div className="map-wrap">
+        <div ref={mapContainer} className="map" />
+        <button onClick={resetDefault} className="refresh">
+          Refresh
+        </button>
+      </div>
+    </>
   );
 }

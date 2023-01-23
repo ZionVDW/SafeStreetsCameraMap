@@ -1,11 +1,39 @@
 .map-wrap {
-    position: relative;
-    width: 100%;
-    height: calc(100vh - 77px); /* calculate height of the screen minus the heading */
-  }
-  
-  .map {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-  }
+  position: relative;
+  width: 100%;
+  height: calc(100vh - 77px);
+  /* calculate height of the screen minus the heading */
+}
+
+.map {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.map-menu {
+  width: 74px;
+  height: 500px;
+  background-color: white;
+  position: fixed;
+  z-index: 9999999999;
+  right: 10px;
+  border-radius: 37px;
+}
+
+.refresh {
+  z-index: 3;
+  position: fixed;
+  right: 10px;
+  bottom: 10px;
+  border-radius: 12px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  size: 100px;
+  padding: 15px 32px;
+}
+
+.maplibregl-ctrl-bottom-right.mapboxgl-ctrl-bottom-right {
+  display: none;
+}
