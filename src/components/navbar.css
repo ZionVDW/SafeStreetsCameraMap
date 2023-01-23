@@ -1,0 +1,12 @@
+.heading {
+    margin: 0;
+    padding: 0px;
+    background-color: darkslategray;
+    color: white;
+    text-align: center;
+  }
+  
+  .heading > h1 {
+    padding: 17px;
+    margin: 0;
+  }
