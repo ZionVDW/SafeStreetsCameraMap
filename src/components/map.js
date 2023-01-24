@@ -4,8 +4,6 @@ import maplibregl from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
 import "./map.css";
 import { useLocation } from "react-router-dom";
-import { animated, useSpring } from "@react-spring/web";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const defaultLng = 4.99084;
 const defaultLat = 51.16257;
@@ -21,9 +19,6 @@ export default function Map() {
   const [lat] = useState(initLat === undefined ? defaultLat : initLat);
   const [zoom] = useState(initZoom === undefined ? defaultZoom : initZoom);
   const [API_KEY] = useState("377LREZ4PGCvgJ3xsq7X");
-  const [springs, api] = useSpring(() => ({
-    from: { bottom: -400 },
-  }));
 
   function resetDefault() {
     map.current.flyTo({
