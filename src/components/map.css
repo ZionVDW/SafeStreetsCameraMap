@@ -29,9 +29,12 @@
   border-radius: 12px;
   text-align: center;
   text-decoration: none;
-  font-size: 16px;
+  font-size: 30px;
   size: 100px;
-  padding: 15px 32px;
+  background-color: white;
+  padding: 10px;
+  padding-left: 19.467px !important;
+  cursor: pointer;
 }
 
 .maplibregl-ctrl-bottom-right.mapboxgl-ctrl-bottom-right {

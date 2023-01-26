@@ -5,6 +5,8 @@ import "maplibre-gl/dist/maplibre-gl.css";
 import "./map.css";
 import { useLocation } from "react-router-dom";
 
+import { VscRefresh } from "react-icons/vsc";
+
 const defaultLng = 4.99084;
 const defaultLat = 51.16257;
 const defaultZoom = 13;
@@ -74,9 +76,9 @@ export default function Map() {
     <>
       <div className="map-wrap">
         <div ref={mapContainer} className="map" />
-        <button onClick={resetDefault} className="refresh">
-          Refresh
-        </button>
+        <div onClick={resetDefault} className="refresh">
+          <VscRefresh />
+        </div>
       </div>
     </>
   );
