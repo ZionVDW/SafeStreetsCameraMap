@@ -3,10 +3,22 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import QRCode from "qrcode.react";
 import "./camera.css";
+import EditCamera from "./editCamera";
+import AddIcon from "@mui/icons-material/Add";
 
 export default function Camera() {
   const [cameras, setCameras] = useState([]);
   const navigate = useNavigate();
+  const [cameraModal, setCameraModal] = useState(null);
+
+  function onClose() {
+    setCameraModal(null);
+  }
+
+  function afterSubmit() {
+    setCameraModal(null);
+    getCameras();
+  }
 
   function capitalizeFirstLetter(word) {
     return word.charAt(0).toUpperCase() + word.slice(1);
@@ -60,15 +72,18 @@ export default function Camera() {
                 Straat:
                 {camera.location !== null &&
                   " " +
-                    camera.location.street +
+                    (camera.location.street || "") +
                     " " +
-                    camera.location.streetNumber}
+                    (camera.location.streetNumber || "")}
               </p>
 
               <p>
                 City:
                 {camera.location !== null &&
-                  " " + camera.location.zipcode + " " + camera.location.city}
+                  " " +
+                    (camera.location.zipcode || "") +
+                    " " +
+                    (camera.location.city || "")}
               </p>
               <div>
                 <QRCode
@@ -89,6 +104,15 @@ export default function Camera() {
                 >
                   Go to map
                 </button>
+                <button
+                  onClick={() =>
+                    setCameraModal({ edit: "update", camera: camera })
+                  }
+                  className="button"
+                >
+                  Edit
+                </button>
+                {/* <button className="button" style={{backgroundColor: "#E43287", borderColor: "#E43287"}}>Deactivat</button> */}
               </div>
             </div>
           </div>
@@ -99,5 +123,50 @@ export default function Camera() {
   useEffect(() => {
     getCameras();
   }, []);
-  return <>{cameras}</>;
+  return (
+    <>
+      <div
+        style={{
+          display: "flex",
+          flexFlow: 'row wrap',
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        {cameras}
+      </div>
+      {cameraModal !== null && (
+        <EditCamera
+          edit={cameraModal.edit}
+          camera={cameraModal.camera}
+          onClose={onClose}
+          afterSubmit={afterSubmit}
+        />
+      )}
+      <div
+        style={{
+          backgroundColor: "#327091",
+          width: 60,
+          height: 60,
+          borderRadius: 30,
+          boxShadow: "5px 5px 10px grey",
+          position: "fixed",
+          bottom: 20,
+          right: 20,
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          cursor: "pointer",
+        }}
+        onClick={() => setCameraModal({ edit: "create" })}
+      >
+        <AddIcon
+          style={{
+            fontSize: 30,
+            color: "white",
+          }}
+        />
+      </div>
+    </>
+  );
 }

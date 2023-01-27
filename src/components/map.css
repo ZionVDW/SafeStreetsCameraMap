@@ -33,7 +33,7 @@
   size: 100px;
   background-color: white;
   padding: 10px;
-  padding-left: 19.467px !important;
+  /* padding-left: 19.467px !important; */
   cursor: pointer;
 }
 

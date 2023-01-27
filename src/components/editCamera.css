@@ -1,0 +1,82 @@
+.edit-camera.container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* background-image: linear-gradient(90deg,#93416d 0%,#2f7092 100%); */
+    background-color: white;
+    width: 500px;
+    border-radius: 35px;
+    box-shadow: 3px 3px 5px grey;
+    border: 2px solid grey;
+}
+
+.edit-camera .field-group {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+}
+
+.edit-camera .field-group .input-group {
+    width: 48%
+}
+
+.edit-camera form h2 {
+    margin-top: 0;
+}
+
+.edit-camera .error-message {
+    height: 22px;
+    color: red;
+}
+
+.edit-camera .label-input {
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.edit-camera .label-input input {
+    height: 24px;
+    /* margin: 0 2px; */
+    border: 2px solid black;
+    border-radius: 7px;
+}
+
+.edit-camera .label-input label {
+    margin-bottom: 10px;
+}
+
+.edit-camera .button-container {
+    padding: 0 0 20px 0;
+}
+
+.edit-camera .button-container button {
+    border: 3px solid #009DDD;
+    font-size: 20px;
+    color: #009DDD;
+    background-color: #fff;
+    padding: 6px 8px;
+    border-radius: 20px;
+}
+
+.edit-camera .button-container button:hover {
+    background-color: #009DDD;
+    color: #fff;
+    cursor: pointer;
+}
+
+.edit-camera .container-top {
+    display: flex;
+    justify-content: space-between;
+}
+
+.edit-camera .container-close {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10px;
+}
+
+.edit-camera .close-icon:hover {
+    cursor: pointer;
+}

@@ -18,6 +18,7 @@
 .container {
   padding: 2px 16px;
   flex-direction: row;
+  justify-content: center;
 }
 
 .button {
