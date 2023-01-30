@@ -8,7 +8,7 @@ import CloseIcon from "@mui/icons-material/Close";
 
 const transformNumberValues = (cv, ov) => {
   return ov === "" || ov === null ? undefined : cv;
-}
+};
 
 const schema = yup
   .object({
@@ -48,7 +48,7 @@ export default function EditCamera({ edit, camera, onClose, afterSubmit }) {
     resolver: yupResolver(schema),
     defaultValues: {
       ...camera,
-      ...camera?.location
+      ...camera?.location,
     },
   });
 
@@ -65,14 +65,14 @@ export default function EditCamera({ edit, camera, onClose, afterSubmit }) {
     submittedcamera.locationId = locationId;
 
     try {
-      await CameraAPI.createCamera(submittedcamera);
+      const cameraResult = await CameraAPI.createCamera(submittedcamera);
+      console.log(cameraResult);
     } catch (error) {
       console.log(error);
     }
   }
 
   async function handleUpdate(submittedcamera, cameraLocation) {
-    console.log('updateeeeeeeeeeeeeeeee')    
     try {
       LocationAPI.updateLocation(camera.locationId, cameraLocation);
     } catch (error) {
@@ -117,7 +117,7 @@ export default function EditCamera({ edit, camera, onClose, afterSubmit }) {
       delete camera[field];
     });
     await handleEdit(camera, cameraLocation);
-    afterSubmit()
+    afterSubmit();
   };
 
   return (
@@ -125,7 +125,12 @@ export default function EditCamera({ edit, camera, onClose, afterSubmit }) {
       <div className="container-top">
         <h1>{title}</h1>
         <div className="container-close">
-          <CloseIcon fontSize="large" style={{color: "#E43287"}} className="close-icon" onClick={onClose}/>
+          <CloseIcon
+            fontSize="large"
+            style={{ color: "#E43287" }}
+            className="close-icon"
+            onClick={onClose}
+          />
         </div>
       </div>
       <form onSubmit={handleSubmit(onSubmit)}>

@@ -5,7 +5,7 @@ import "maplibre-gl/dist/maplibre-gl.css";
 import "./map.css";
 import { useLocation } from "react-router-dom";
 
-import { VscRefresh } from "react-icons/vsc";
+import RefreshIcon from "@mui/icons-material/Refresh";
 
 const defaultLng = 4.99084;
 const defaultLat = 51.16257;
@@ -77,7 +77,7 @@ export default function Map() {
       <div className="map-wrap">
         <div ref={mapContainer} className="map" />
         <div onClick={resetDefault} className="refresh">
-          <VscRefresh />
+          <RefreshIcon style={{ display: "block", fontSize: 30 }} />
         </div>
       </div>
     </>
