@@ -87,6 +87,12 @@ export default function Camera() {
                     " " +
                     (camera.location.city || "")}
               </p>
+
+              <p>
+                SpeedLimit:
+                {camera.location !== null &&
+                  " " + (camera.location.speedLimit || "")}
+              </p>
               <div>
                 <QRCode
                   id={camera.macAddress}

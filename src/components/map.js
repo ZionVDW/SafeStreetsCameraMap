@@ -59,7 +59,13 @@ export default function Map() {
             camera.location.street +
             " " +
             camera.location.streetNumber +
-            "</h3> \n <h3>Gemeente: 2020 GEEL</h3>"
+            "</h3> \n <h3>Gemeente: " +
+            camera.location.zipcode +
+            " " +
+            camera.location.city +
+            "</h3> \n <h3>Speed limit: " +
+            camera.location.speedLimit +
+            "</h3>"
         );
         console.log(camera);
         new maplibregl.Marker({ color: "#FF0000" })
