@@ -33,7 +33,9 @@ export default function Map() {
     const getmarkers = async () => {
       let result;
       try {
-        result = await axios.get("http://localhost:3000/camera");
+        result = await axios.get(
+          "https://safestreets.westeurope.cloudapp.azure.com:3000/camera"
+        );
       } catch (error) {
         console.log(error);
         return;

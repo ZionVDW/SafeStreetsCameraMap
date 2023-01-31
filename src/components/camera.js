@@ -37,7 +37,9 @@ export default function Camera() {
   const getCameras = async () => {
     let result;
     try {
-      result = await axios.get("http://localhost:3000/camera");
+      result = await axios.get(
+        "https://safestreets.westeurope.cloudapp.azure.com:3000/camera"
+      );
     } catch (error) {
       console.log(error);
       return;
@@ -128,7 +130,7 @@ export default function Camera() {
       <div
         style={{
           display: "flex",
-          flexFlow: 'row wrap',
+          flexFlow: "row wrap",
           justifyContent: "center",
           alignItems: "center",
         }}
