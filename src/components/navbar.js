@@ -10,6 +10,9 @@ export default function Navbar() {
           <p>Overzicht van Camera's</p>
         </div>
         <li>
+          <Link to="/login">Login</Link>
+        </li>
+        <li>
           <Link to="/camera">Cameras</Link>
         </li>
         <li>
