@@ -68,7 +68,7 @@ export default function Map() {
             "</h3>"
         );
         console.log(camera);
-        new maplibregl.Marker({ color: "#FF0000" })
+        false && camera.location.longitude && camera.location.latitude && new maplibregl.Marker({ color: "#FF0000" })
           .setLngLat([
             parseFloat(camera.location.longitude),
             parseFloat(camera.location.latitude),

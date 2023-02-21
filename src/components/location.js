@@ -5,9 +5,8 @@ import QRCode from "qrcode.react";
 import "./camera.css";
 import EditCamera from "./editCamera";
 import AddIcon from "@mui/icons-material/Add";
-import { saveAs } from "file-saver";
 
-export default function Camera() {
+export default function Location() {
   const [cameras, setCameras] = useState([]);
   const navigate = useNavigate();
   const [cameraModal, setCameraModal] = useState(null);
@@ -17,7 +16,6 @@ export default function Camera() {
   }
 
   function afterSubmit() {
-    console.log("after submit");
     setCameraModal(null);
     getCameras();
   }
@@ -36,18 +34,10 @@ export default function Camera() {
     });
   }
 
-  function saveTextFile(camera) {
-    const content = `token = "${camera.cameraToken}"`
-    const blob = new Blob([content])
-    saveAs(blob, `config.py`)
-  }
-
   const getCameras = async () => {
     let result;
     try {
-      result = await axios.get(
-        "https://safestreets.westeurope.cloudapp.azure.com:3000/camera"
-      );
+      result = await axios.get("http://localhost:3000/camera");
     } catch (error) {
       console.log(error);
       return;
@@ -95,12 +85,6 @@ export default function Camera() {
                     " " +
                     (camera.location.city || "")}
               </p>
-
-              <p>
-                SpeedLimit:
-                {camera.location !== null &&
-                  " " + (camera.location.speedLimit || "")}
-              </p>
               <div>
                 <QRCode
                   id={camera.macAddress}
@@ -111,9 +95,6 @@ export default function Camera() {
                 />
               </div>
               <div>
-                <button onClick={() => saveTextFile(camera)} className="button">
-                  Download Token File
-                </button>
                 <button onClick={downloadQR} className="button">
                   Download QR-code
                 </button>
@@ -147,7 +128,7 @@ export default function Camera() {
       <div
         style={{
           display: "flex",
-          flexFlow: "row wrap",
+          flexFlow: 'row wrap',
           justifyContent: "center",
           alignItems: "center",
         }}
@@ -162,30 +143,6 @@ export default function Camera() {
           afterSubmit={afterSubmit}
         />
       )}
-      <div
-        style={{
-          backgroundColor: "#327091",
-          width: 60,
-          height: 60,
-          borderRadius: 30,
-          boxShadow: "5px 5px 10px grey",
-          position: "fixed",
-          bottom: 20,
-          right: 20,
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          cursor: "pointer",
-        }}
-        onClick={() => setCameraModal({ edit: "create" })}
-      >
-        <AddIcon
-          style={{
-            fontSize: 30,
-            color: "white",
-          }}
-        />
-      </div>
     </>
   );
 }
