@@ -7,7 +7,7 @@
   margin-top: 30px;
   margin-left: 20px;
   padding: auto;
-  width: 17%;
+  width: 16%;
   padding: 50px;
 }
 
@@ -25,6 +25,7 @@
     padding: 50px;
   }
 }
+
 @media only screen and (max-width: 735px) {
   .card {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);

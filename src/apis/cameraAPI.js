@@ -6,7 +6,7 @@ export default class CameraAPI {
   }
 
   static createCameraWithLocation(camera) {
-    return apiInstance.post("/camera/with-location", camera)
+    return apiInstance.post("/camera/with-location", camera);
   }
 
   static updateCamera(id, camera) {

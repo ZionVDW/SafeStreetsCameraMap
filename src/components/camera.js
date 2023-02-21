@@ -16,6 +16,7 @@ export default function Camera() {
   }
 
   function afterSubmit() {
+    console.log("after submit");
     setCameraModal(null);
     getCameras();
   }

@@ -74,13 +74,13 @@ export default function EditCamera({ edit, camera, onClose, afterSubmit }) {
 
   async function handleUpdate(submittedcamera, cameraLocation) {
     try {
-      LocationAPI.updateLocation(camera.locationId, cameraLocation);
+      await LocationAPI.updateLocation(camera.locationId, cameraLocation);
     } catch (error) {
       console.log(error);
     }
 
     try {
-      CameraAPI.updateCamera(camera.cameraId, submittedcamera);
+      await CameraAPI.updateCamera(camera.cameraId, submittedcamera);
     } catch (error) {
       console.log(error);
     }

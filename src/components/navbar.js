@@ -9,9 +9,9 @@ export default function Navbar() {
         <div className="left">
           <p>Overzicht van Camera's</p>
         </div>
-        <li>
+        {/* <li>
           <Link to="/login">Login</Link>
-        </li>
+        </li> */}
         <li>
           <Link to="/camera">Cameras</Link>
         </li>
